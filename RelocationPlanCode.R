@@ -88,38 +88,24 @@ grid.arrange(cotplot,rentplot,ncol=2)
 ###########Zillow Median Rent Data##################
 ########### http://www.zillow.com/research/data/####
 #Data Cleaning 
-
-#MetroStudio <- read.csv("~/datascience/Project 1-Visuaization/Metro_MedianRentalPrice_Studio.csv", stringsAsFactors=FALSE)
-Metro1Bedroom <- read.csv("~/datascience/Project 1-Visuaization/Metro_MedianRentalPrice_1Bedroom.csv", stringsAsFactors=FALSE)
-Metro2Bedroom <- read.csv("~/datascience/Project 1-Visuaization/Metro_MedianRentalPrice_2Bedroom.csv", stringsAsFactors=FALSE)
-Metro3Bedroom <- read.csv("~/datascience/Project 1-Visuaization/Metro_MedianRentalPrice_3Bedroom.csv", stringsAsFactors=FALSE)
-#Metro4Bedroom <- read.csv("~/datascience/Project 1-Visuaization/Metro_MedianRentalPrice_4Bedroom.csv", stringsAsFactors=FALSE)
-#Metro5Bedroom <- read.csv("~/datascience/Project 1-Visuaization/Metro_MedianRentalPrice_5BedroomOrMore.csv", stringsAsFactors=FALSE)
-
-#MetroStudioPer <- read.csv("~/datascience/Project 1-Visuaization/Metro_MedianRentalPricePerSqft_Studio.csv", stringsAsFactors=FALSE)
-Metro1BedroomPer <- read.csv("~/datascience/Project 1-Visuaization/Metro_MedianRentalPricePerSqft_1Bedroom.csv", stringsAsFactors=FALSE)
-Metro2BedroomPer <- read.csv("~/datascience/Project 1-Visuaization/Metro_MedianRentalPricePerSqft_2Bedroom.csv", stringsAsFactors=FALSE)
-Metro3BedroomPer <- read.csv("~/datascience/Project 1-Visuaization/Metro_MedianRentalPricePerSqft_3Bedroom.csv", stringsAsFactors=FALSE)
-#Metro4BedroomPer <- read.csv("~/datascience/Project 1-Visuaization/Metro_MedianRentalPricePerSqft_4Bedroom.csv", stringsAsFactors=FALSE)
-#Metro5BedroomPer <- read.csv("~/datascience/Project 1-Visuaization/Metro_MedianRentalPricePerSqft_5BedroomOrMore.csv", stringsAsFactors=FALSE)
+Metro1Bedroom <- read.csv("Metro_MedianRentalPrice_1Bedroom.csv", stringsAsFactors=FALSE)
+Metro2Bedroom <- read.csv("Metro_MedianRentalPrice_2Bedroom.csv", stringsAsFactors=FALSE)
+Metro3Bedroom <- read.csv("Metro_MedianRentalPrice_3Bedroom.csv", stringsAsFactors=FALSE)
+Metro1BedroomPer <- read.csv("Metro_MedianRentalPricePerSqft_1Bedroom.csv", stringsAsFactors=FALSE)
+Metro2BedroomPer <- read.csv("Metro_MedianRentalPricePerSqft_2Bedroom.csv", stringsAsFactors=FALSE)
+Metro3BedroomPer <- read.csv("Metro_MedianRentalPricePerSqft_3Bedroom.csv", stringsAsFactors=FALSE)
 
 #city contains all 12 cities and cityrent contains only cities in plot
 city<-Metro1Bedroom$RegionName[c(2,3,4,5,6,7,8,10,11,12,16,34)]
 cityrent<-city[c(1,7,9,10,11,12)]
 
-#MetroStudio<-filter(MetroStudio, RegionName %in% cityrent)
 Metro1Bedroom<-filter(Metro1Bedroom, RegionName %in% cityrent)
 Metro2Bedroom<-filter(Metro2Bedroom, RegionName %in% cityrent)
 Metro3Bedroom<-filter(Metro3Bedroom, RegionName %in% cityrent)
-#Metro4Bedroom<-filter(Metro4Bedroom, RegionName %in% cityrent)
-#Metro5Bedroom<-filter(Metro5Bedroom, RegionName %in% cityrent)
 
-#MetroStudioPer<-filter(MetroStudioPer, RegionName %in% cityrent)
 Metro1BedroomPer<-filter(Metro1BedroomPer, RegionName %in% cityrent)
 Metro2BedroomPer<-filter(Metro2BedroomPer, RegionName %in% cityrent)
 Metro3BedroomPer<-filter(Metro3BedroomPer, RegionName %in% cityrent)
-#Metro4BedroomPer<-filter(Metro4BedroomPer, RegionName %in% cityrent)
-#Metro5BedroomPer<-filter(Metro5BedroomPer, RegionName %in% cityrent)
 
 #drop col 2010.01 in 2 and 3 bdroom
 Metro2Bedroom<-Metro2Bedroom[,-3]
@@ -210,7 +196,7 @@ allplot
 perplot<-ggplot(perRoom2, aes(x = Time, y= Price, group=Region))+
   geom_line(size=1.2,aes(colour=Region)) +facet_wrap(~RoomType)+
   scale_fill_brewer(palette="Dark2")+
-  ggtitle("Median Rental Price per Sqrt by Room Type (2015-2016.05)")+
+  ggtitle("Median Rental Price per Sqft by Room Type (2015-2016.05)")+
   scale_x_discrete(labels=c("2015 Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",
                             "2016 Jan","Feb","Mar","Apr","May"))+
   theme(axis.text.x = element_text(size=13,angle=90, vjust=1),
